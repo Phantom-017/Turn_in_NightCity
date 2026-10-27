@@ -1,36 +1,77 @@
 # Afficher titre
 # Afficher menu
-    # Afficher num et texte élément
 # Choix
-# Tant que Vrai
-    # Récuperer choix menu
-    # Vérifier si choix menu valide
-        # Si choix valide
-            # renvoi choix
-        # Sinon 
-            # lancer fonction erreur
 # Choix 1 pour démarrer le jeu
-    # Demande d'entrer pseudo
-    # Entre pseudo
+    # Création joueur
+        # Récuperer pseudo valide
+            # while True :
+                # Demander rentrer pseudo
+                # Si nom valide
+                    # return nom
+                # Sinon
+                    # Lancer fonction erreur
+    # Création equipe
+        # Récuperer équipe
+    # Boucle de combat
+    # Inscrire score dans db
+    # Afficher score
+    # Afficher leaderboard
+
+# Choix 2 pour afficher leaderboard
+    # Récupérer score
+    # Afficher leaderboard
+# Choix 3 pour quitter le jeu
+    # Quitte le jeu sys.exit
+
+# Fonction titre
+    # Écirer titre
+
+# Fonction menu
+    # Afficher num et texte élément
+
+# Fonction choix
+    # Tant que Vrai
+        # Récuperer choix menu
+        # Vérifier si choix menu valide
+
+# Fonction vérifier choix
+    # Si choix valide
+        # renvoi choix
+    # Sinon 
+        # lancer fonction erreur
+
+# Fonction is_pseudo
+    # nom > 3 caractères
+    # nom < 50 caractères
+    # unique dans la db
+
+# Fonction is_team
     # Récupère persos dans la base
-    # Afficher persos
-    # Demande à créer une équipe de 3
-    # Boucle de 3
-        # Choix 1 à 10 pour chosisir un perso
-        # Récupère choix du joueur
-            # Sinon
-                # Lancer fonction erreur
-        # Afficher équipe
-        # Actualise la liste des persos
-    # Lancement du carnage
-# Choix 2 pour afficher le tableau des score
+        # Boucle de 3
+            # Afficher persos dispos
+            # Récupère choix du joueur
+            # Ajoute perso à l'équipe
+            # Afficher équipe
+            # Actualise la liste des persos dispo
+
+# Fonction combat
+    # nombre de vagues
+    # Tant que pv de la team > 0
+                # Récupère ennemi dans la base aléatoirement
+                # Affiche ennemi et stats
+                # Lancement du carnage (phase combat)
+                # +1 au compteur de vagues (scores)
+    # Insérer score dans la base
+    # Afficher score
+
+# Fonction récup score
     # Récupérer score dans la base
         # Ouvrir base
         # Accéder à players.score
         # Find
         # Convertir curseur en liste
+
+# Fonction afficher leaderboard
     # Filtrer score element.waves
         # Afficher top 3 score array[-3;-1"]
-    # Quitter tableau des scores pour retourner au menu
-# Choix 3 pour quitter le jeu
-    # Quitte le jeu sys.exit
+    # Quitter leaderboard pour retourner au menu

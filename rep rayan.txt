@@ -1,0 +1,11 @@
+On oublie souvent de se poser la question à un problème en voulant directement le résoudre
+et donc on avance pas puisqu'on ne trouve pas de réponse sans se poser une question 
+avant
+On pense pas à faire le cheminement avant de coder directement la fonction et donc on sait
+pas vraiment ou elle va, ce qui vient à briser le single responsability ou faire du code
+spaghetti
+On avance directement dans un langage qui n'est pas le notre au lieu de commencer avec notre
+langage naturel pour ensuite le traduire et pouvoir former nos idées plus rapidement
+On prend pas toujours l'initiative de changer d'approche
+
+frrr g fais 4 quest j'étais boosté mdrr

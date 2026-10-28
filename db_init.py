@@ -9,6 +9,7 @@ db = client["turn_in_nightcity_db"]
 # Sélection des collections
 edgerunners = db["Edgerunners"]
 corpos = db["Corpos"]
+scores = db["Scores"]
 
 # Supprime la collection afin d'éviter les doublons
 edgerunners.drop()

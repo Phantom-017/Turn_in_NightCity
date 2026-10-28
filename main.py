@@ -1,9 +1,9 @@
 from pymongo import MongoClient
-from db_init import db, edgerunners, corpos
+from db_init import db, edgerunners, corpos, scores
 
 # Fonction erreur
 def erreur():
-     print("€$TU SAIS PAS ÉCRIRE OU QUOI CHOOM !")
+     print("€$T'ES TEUBÉ OU QUOI CHOOM !€$")
 
 # Afficher menu principal
 def main_menu():
@@ -19,66 +19,75 @@ def main_menu():
         )
 
 # Choix
-def valid_choice(min_val, max_val, saisie):
+def valid_choice(min_val, max_val):
+    saisie = input()
     # Vérifie si la saisie n'est pas un chiffre
     if not saisie.isnumeric():
-        return False
+        erreur()
     # Vérifie si la valeur saisie est supérieure à la valeur minimale
     if int(saisie) < min_val:
-        return False
+        erreur()
     # Vérifie si la valeur saisie est supérieure à la valeur maximale
     if int(saisie) > max_val:
-            return False
-    return True
-
+        erreur()
+    # Sinon on peut renvoyer la saisie
+    return saisie
+    
 def get_valid_choice():
     # Recommence tant que le joueur n'entre pas une valeur valide
-    while True :
-        # Saisi de la valeur
-        saisie = input("€$POUR CHOISIR UNE OPTION ENTRE UN CHIFFRE CHOOM€$ : ")
-        # Vérifier la valeur
-        if valid_choice(min_val, max_val, saisie):
-             return int(saisie)
-        else :
-             print(erreur)
+    print("€$ENTRE UN NUM POUR CHOISIR TON OPTION SALE BLEU€$")
+    # Faire un choix
+    choice = valid_choice(1, 3)
+    # Renvoi choix
+    return choice
 
+# Fonction is_valid_pseudo
+def valid_pseudo(min_char, max_char):
+    username = input()
+    # nom > 3 caractères
+    if len(username) < min_char :
+         return False
+    # nom < 50 caractères
+    if len(username) > max_char :
+         return False
+    # unique dans la db
+    not_unique = scores.find()
+    if username == not_unique :
+         return False
+    return username
+
+# Création joueur
+def create_player():
+     
+     print(f"€$YO, T'AS UN BLAZE CHOOM ??€$ : ")
+     # Entrer un pseudo
+     username = valid_pseudo(3, 50)
+     print(f"€$ C'EST ÇA TON BLAZE, {username} ? PARCE QUE C'EST NOVA !€$")
+
+
+# Fonction principale
 # Tant que Vrai
-while True :
+def main():
     main_menu()
     # Vérifier si choix menu valide
-    valid_choice()
     # Récuperer choix menu
-    get_valid_choice()
+    user_choice = get_valid_choice()
     # Choix 1 pour démarrer le jeu
-        # Création joueur
-            # Récuperer pseudo valide
-                # while True :
-                    # Si choix valide
-                        # renvoi choix
-                    # Sinon 
-                        # lancer fonction erreur
-                    # Demander rentrer pseudo
-                    # Si nom valide
-                        # return nom
-                    # Sinon
-                        # Lancer fonction erreur
+    # Récuperer pseudo valide
+    # Création joueur
+    create_player()
         # Création equipe
             # Récuperer équipe
         # Boucle de combat
         # Inscrire score dans db
         # Afficher score
         # Afficher leaderboard
-
+main()
     # Choix 2 pour afficher leaderboard
         # Récupérer score
         # Afficher leaderboard
     # Choix 3 pour quitter le jeu
         # Quitte le jeu sys.exit
-
-    # Fonction is_valid_pseudo
-        # nom > 3 caractères
-        # nom < 50 caractères
-        # unique dans la db
 
     # Fonction is_team
         # Récupère persos dans la base

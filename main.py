@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from db_init import db, edgerunners, corpos, scores
 
 # Fonction erreur
-def erreur():
+def error():
      print("€$T'ES TEUBÉ OU QUOI CHOOM !€$")
 
 # Afficher menu principal
@@ -19,76 +19,87 @@ def main_menu():
         )
 
 # Choix
-def valid_choice(min_val, max_val):
-    saisie = input()
-    # Vérifie si la saisie n'est pas un chiffre
-    if not saisie.isnumeric():
-        erreur()
-    # Vérifie si la valeur saisie est supérieure à la valeur minimale
-    if int(saisie) < min_val:
-        erreur()
-    # Vérifie si la valeur saisie est supérieure à la valeur maximale
-    if int(saisie) > max_val:
-        erreur()
-    # Sinon on peut renvoyer la saisie
-    return saisie
+def valid_choice(min_val, max_val, user_choice):
+    # Vérifie si le choix n'est pas un chiffre
+    if not user_choice.isnumeric():
+        return False
+    # Vérifie si le choix est supérieure à la valeur minimale
+    if int(user_choice) < min_val:
+        return False
+    # Vérifie si le choixest supérieure à la valeur maximale
+    if int(user_choice) > max_val:
+        return False
+    return True
+
     
 def get_valid_choice():
-    # Recommence tant que le joueur n'entre pas une valeur valide
-    print("€$ENTRE UN NUM POUR CHOISIR TON OPTION SALE BLEU€$")
-    # Faire un choix
-    choice = valid_choice(1, 3)
-    # Renvoi choix
-    return choice
+    while True :
+        # Entrer choix
+        user_choice = input("€$ENTRE UN NUM POUR CHOISIR TON OPTION SALE BLEU€$ : ")
+        # Vérifie choix
+        if valid_choice(1, 3, user_choice):
+            # Renvoi choix
+            return int(user_choice)
+        else :
+            error()
 
 # Fonction is_valid_pseudo
-def valid_pseudo(min_char, max_char):
-    username = input()
+def valid_pseudo(min_char, max_char, username):
     # nom > 3 caractères
     if len(username) < min_char :
-         return False
+        return False
     # nom < 50 caractères
     if len(username) > max_char :
-         return False
+        return False
     # unique dans la db
     not_unique = scores.find()
     if username == not_unique :
-         return False
-    return username
+        return False
+    return True
 
 # Création joueur
 def create_player():
-     
-     print(f"€$YO, T'AS UN BLAZE CHOOM ??€$ : ")
-     # Entrer un pseudo
-     username = valid_pseudo(3, 50)
-     print(f"€$ C'EST ÇA TON BLAZE, {username} ? PARCE QUE C'EST NOVA !€$")
-
+     while True :
+        # Entrer un pseudo
+        username = input(f"€$YO, T'AS UN BLAZE CHOOM ??€$ : ")
+        # Vérifie pseudo
+        if valid_pseudo(3, 50, username):
+            # Affiche le pseudo rentré
+            print(f"€$ C'EST ÇA TON BLAZE, {username} ? PARCE QUE C'EST NOVA !€$")
+            # Renvoi pseudo
+            return(username)
+        else :
+            error()
 
 # Fonction principale
-# Tant que Vrai
 def main():
-    main_menu()
-    # Vérifier si choix menu valide
-    # Récuperer choix menu
-    user_choice = get_valid_choice()
-    # Choix 1 pour démarrer le jeu
-    # Récuperer pseudo valide
-    # Création joueur
-    create_player()
-        # Création equipe
-            # Récuperer équipe
-        # Boucle de combat
-        # Inscrire score dans db
-        # Afficher score
-        # Afficher leaderboard
+    # Tant que Vrai
+    while True :
+        main_menu()
+        # Vérifier si choix menu valide
+        # Récuperer choix menu
+        user_choice = get_valid_choice()
+        # Choix 1 pour démarrer le jeu
+        if int(user_choice) == 1 :
+            # Récuperer pseudo valide
+            # Création joueur
+            create_player()
+                # Création equipe
+                    # Récuperer équipe
+                # Boucle de combat
+                # Inscrire score dans db
+                # Afficher score
+                # Afficher leaderboard
+        # Choix 2 pour afficher leaderboard
+        elif int(user_choice) == 2 :
+            # Récupérer score
+            # Afficher leaderboard
+            leaderboard()
+        # Choix 3 pour quitter le jeu
+        elif int(user_choice) == 3 :
+            # Quitte le jeu sys.exit
+            exit()
 main()
-    # Choix 2 pour afficher leaderboard
-        # Récupérer score
-        # Afficher leaderboard
-    # Choix 3 pour quitter le jeu
-        # Quitte le jeu sys.exit
-
     # Fonction is_team
         # Récupère persos dans la base
             # Boucle de 3
